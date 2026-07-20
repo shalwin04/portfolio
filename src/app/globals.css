@@ -1,26 +1,475 @@
 @import "tailwindcss";
 
+/* Dark Mode (default) */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Background colors */
+  --void: #0a0a0a;
+  --void-light: #0f0f12;
+  --void-lighter: #151518;
+  --night-city: #1a1018;
+
+  /* Primary accent colors */
+  --neon-yellow: #f8e602;
+  --neon-green: #4bff21;
+  --neon-cyan: #00f0ff;
+  --neon-pink: #ff2a6d;
+  --neon-magenta: #d300c5;
+  --neon-purple: #7b2cbf;
+  --deep-purple: #772289;
+  --soft-pink: #f4d5fd;
+
+  /* Cream/Off-white for editorial typography */
+  --cream: #f5f0e8;
+  --cream-dark: #e8e0d4;
+
+  /* Accent variations */
+  --neon-yellow-dim: rgba(248, 230, 2, 0.5);
+  --neon-green-dim: rgba(75, 255, 33, 0.5);
+  --neon-cyan-dim: rgba(0, 240, 255, 0.5);
+  --neon-pink-dim: rgba(255, 42, 109, 0.5);
+  --neon-magenta-dim: rgba(211, 0, 197, 0.5);
+  --neon-purple-dim: rgba(123, 44, 191, 0.5);
+
+  /* Character accent colors */
+  --david-yellow: #f8e602;
+  --lucy-purple: #9d4edd;
+  --rebecca-pink: #ff2a6d;
+
+  /* Project accents */
+  --aegis: #ff2a6d;
+  --cicd: #7b2cbf;
+  --analytics: #4bff21;
+  --emowell: #f8e602;
+
+  /* Text colors */
+  --text-primary: #ffffff;
+  --text-secondary: #c9c9c9;
+  --text-muted: #6b6b6b;
+
+  /* Background for Tailwind */
+  --background: var(--void);
+  --foreground: var(--text-primary);
+}
+
+/* Light Mode */
+[data-theme="light"] {
+  --void: #faf9f7;
+  --void-light: #f5f3f0;
+  --void-lighter: #ebe8e4;
+  --night-city: #e8e4df;
+
+  /* Darker accents for light mode */
+  --neon-pink: #d91a56;
+  --neon-purple: #6b21a8;
+  --neon-cyan: #0891b2;
+  --neon-green: #15803d;
+
+  /* Dark text for light mode */
+  --cream: #1a1a1a;
+  --cream-dark: #2d2d2d;
+
+  --text-primary: #0a0a0a;
+  --text-secondary: #404040;
+  --text-muted: #737373;
+
+  --background: var(--void);
+  --foreground: var(--text-primary);
+}
+
+/* Light mode section backgrounds for better text readability */
+[data-theme="light"] .section {
+  background: rgba(250, 249, 247, 0.85);
+}
+
+/* Light mode: reduce 3D canvas opacity */
+[data-theme="light"] .canvas-container {
+  opacity: 0.4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-void: var(--void);
+  --color-void-light: var(--void-light);
+  --color-void-lighter: var(--void-lighter);
+  --color-night-city: var(--night-city);
+  --color-cream: var(--cream);
+  --color-cream-dark: var(--cream-dark);
+  --color-neon-yellow: var(--neon-yellow);
+  --color-neon-green: var(--neon-green);
+  --color-neon-cyan: var(--neon-cyan);
+  --color-neon-pink: var(--neon-pink);
+  --color-neon-magenta: var(--neon-magenta);
+  --color-neon-purple: var(--neon-purple);
+  --color-aegis: var(--aegis);
+  --color-cicd: var(--cicd);
+  --color-analytics: var(--analytics);
+  --color-emowell: var(--emowell);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+  --font-display: var(--font-playfair);
+  --font-accent: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--void);
+  color: var(--text-primary);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Editorial Typography Classes */
+.font-display {
+  font-family: var(--font-display), Georgia, serif;
+}
+
+.font-accent {
+  font-family: var(--font-accent), Georgia, serif;
+}
+
+/* Large display text - compressed tracking like Patrick David */
+.display-huge {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 400;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+.display-large {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+}
+
+/* Accent italic text */
+.accent-italic {
+  font-family: var(--font-accent), Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--neon-pink);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* Selection styling */
+::selection {
+  background: var(--neon-pink-dim);
+  color: var(--text-primary);
+}
+
+/* Glow text effects */
+.glow-text {
+  text-shadow:
+    0 0 10px var(--neon-cyan-dim),
+    0 0 20px var(--neon-cyan-dim),
+    0 0 40px var(--neon-cyan-dim);
+}
+
+.glow-pink {
+  text-shadow: 0 0 10px var(--neon-pink-dim), 0 0 20px var(--neon-pink-dim);
+}
+
+.glow-yellow {
+  text-shadow: 0 0 10px var(--neon-yellow-dim), 0 0 20px var(--neon-yellow-dim);
+}
+
+/* Neon border */
+.neon-border {
+  box-shadow: 0 0 5px var(--neon-pink-dim), 0 0 10px var(--neon-cyan-dim);
+  border: 1px solid var(--neon-pink);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Canvas container - behind everything, shows through transparent sections */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Section base styles - above canvas */
+.section {
+  position: relative;
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  z-index: 10;
+}
+
+@media (min-width: 640px) {
+  .section {
+    padding: 6rem 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 6rem 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 10rem 6rem;
+  }
+}
+
+/* Outline text effect */
+.text-outline {
+  -webkit-text-stroke: 1px var(--cream);
+  color: transparent;
+}
+
+.text-outline-pink {
+  -webkit-text-stroke: 1.5px var(--neon-pink);
+  color: transparent;
+}
+
+/* Pill button style */
+.pill-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--cream);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.pill-button:hover {
+  background: var(--cream);
+  color: var(--void);
+}
+
+/* Tag pills */
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(245, 240, 232, 0.3);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.tag-pill:hover {
+  border-color: var(--neon-pink);
+  color: var(--neon-pink);
+}
+
+/* Horizontal rule with gradient */
+.hr-gradient {
+  height: 1px;
+  background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+  border: none;
+}
+
+/* Status indicator */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--neon-green);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.1); }
+}
+
+/* Editorial card */
+.editorial-card {
+  background: transparent;
+  border: 1px solid rgba(255, 42, 109, 0.2);
+  border-left: 2px solid var(--neon-pink);
+}
+
+/* ===== TEXT ANIMATIONS ===== */
+
+/* Staggered letter animation */
+@keyframes letterReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(30px) rotateX(-40deg);
+    filter: blur(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+/* Word slide up animation */
+@keyframes wordSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in up animation */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Glitch effect */
+@keyframes glitch {
+  0%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+
+/* Text shimmer effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Typewriter cursor blink */
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Animation utility classes */
+.animate-letter-reveal {
+  animation: letterReveal 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-word-slide {
+  animation: wordSlideUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-glitch:hover {
+  animation: glitch 0.3s ease-in-out;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--cream) 0%,
+    var(--neon-pink) 50%,
+    var(--cream) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Split text container for letter animations */
+.split-text {
+  display: inline-flex;
+  overflow: hidden;
+}
+
+.split-text span {
+  display: inline-block;
+}
+
+/* Hover lift effect for text */
+.hover-lift {
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .display-huge {
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Smooth transitions for theme switching */
+body,
+.section,
+.editorial-card {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
