@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     }
 
     // Get API key from environment (optional)
-    const apiKey = process.env.ANTHROPIC_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
 
     // Generate response (will use fallback if no API key)
     const response = await generateChatResponse(messages, apiKey);

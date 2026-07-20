@@ -1,7 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { AnimatedLetters, AnimatedWords, FadeUp } from "@/components/ui/AnimatedText";
+import {
+  AnimatedLetters,
+  AnimatedWords,
+  FadeUp,
+} from "@/components/ui/AnimatedText";
 
 export default function Hero() {
   return (
@@ -17,16 +21,35 @@ export default function Hero() {
         className="absolute top-0 left-0 right-0 flex items-center justify-between px-4 sm:px-6 md:px-12 lg:px-20 py-4 sm:py-6 border-b border-cream/10 z-30"
       >
         <div className="flex items-center gap-4 sm:gap-8">
-          <span className="font-accent italic text-cream text-base sm:text-lg">Shalwin Sanju</span>
+          <span className="font-accent italic text-cream text-base sm:text-lg">
+            Shalwin Sanju
+          </span>
           <span className="text-cream/60 text-xs sm:text-sm tracking-widest uppercase hidden md:block">
             Generative AI Engineer @ Cprime
           </span>
         </div>
         <div className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm text-cream/60">
-          <a href="/showcase" className="hover:text-cream transition-colors hidden sm:block">demos</a>
-          <a href="#projects" className="hover:text-cream transition-colors hidden sm:block">works</a>
-          <a href="#about" className="hover:text-cream transition-colors hidden sm:block">about</a>
-          <a href="#contact" className="hover:text-cream transition-colors">contact</a>
+          <a
+            href="/showcase"
+            className="hover:text-cream transition-colors hidden sm:block"
+          >
+            demos
+          </a>
+          <a
+            href="#projects"
+            className="hover:text-cream transition-colors hidden sm:block"
+          >
+            works
+          </a>
+          <a
+            href="#about"
+            className="hover:text-cream transition-colors hidden sm:block"
+          >
+            about
+          </a>
+          <a href="#contact" className="hover:text-cream transition-colors">
+            contact
+          </a>
         </div>
       </motion.div>
 
@@ -53,7 +76,9 @@ export default function Hero() {
           {/* Secondary large text */}
           <div className="flex items-end gap-2 sm:gap-4">
             <FadeUp delay={0.8}>
-              <span className="font-accent italic text-cream/50 text-xl sm:text-2xl md:text-3xl">&</span>
+              <span className="font-accent italic text-cream/50 text-xl sm:text-2xl md:text-3xl">
+                &
+              </span>
             </FadeUp>
             <h2 className="display-huge text-cream text-[12vw] sm:text-[10vw] md:text-[8vw] lg:text-[6vw] leading-[0.85]">
               <AnimatedLetters text="BUILDER" delay={0.9} />
@@ -69,7 +94,7 @@ export default function Hero() {
               <div className="flex items-center gap-2 sm:gap-3">
                 <span className="status-dot" />
                 <span className="text-xs sm:text-sm text-cream/60 font-mono uppercase tracking-wider">
-                  2025
+                  2026
                 </span>
               </div>
               <span className="text-xs sm:text-sm text-cream uppercase tracking-wider ml-2 sm:ml-4">
@@ -97,13 +122,22 @@ export default function Hero() {
           {/* CTA */}
           <FadeUp delay={1.8}>
             <div className="flex flex-wrap gap-3 sm:gap-4">
-              <a href="/showcase" className="pill-button text-cream text-sm sm:text-base">
+              <a
+                href="/showcase"
+                className="pill-button text-cream text-sm sm:text-base"
+              >
                 Watch Demos
               </a>
-              <a href="#projects" className="pill-button text-neon-cyan border-neon-cyan hover:bg-neon-cyan hover:text-void text-sm sm:text-base">
+              <a
+                href="#projects"
+                className="pill-button text-neon-cyan border-neon-cyan hover:bg-neon-cyan hover:text-void text-sm sm:text-base"
+              >
                 View Projects
               </a>
-              <a href="#contact" className="pill-button text-neon-pink border-neon-pink hover:bg-neon-pink hover:text-void text-sm sm:text-base">
+              <a
+                href="#contact"
+                className="pill-button text-neon-pink border-neon-pink hover:bg-neon-pink hover:text-void text-sm sm:text-base"
+              >
                 Contact Me
               </a>
             </div>
@@ -130,13 +164,28 @@ export default function Hero() {
 
         {/* Social links */}
         <div className="flex items-center gap-4 sm:gap-6 text-cream/40 text-[10px] sm:text-xs font-mono uppercase tracking-widest">
-          <a href="https://github.com/shalwin04" target="_blank" rel="noopener noreferrer" className="hover:text-cream transition-colors">
+          <a
+            href="https://github.com/shalwin04"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cream transition-colors"
+          >
             Github
           </a>
-          <a href="https://linkedin.com/in/shalwin-sanju" target="_blank" rel="noopener noreferrer" className="hover:text-cream transition-colors hidden sm:block">
+          <a
+            href="https://linkedin.com/in/shalwin-sanju"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cream transition-colors hidden sm:block"
+          >
             LinkedIn
           </a>
-          <a href="https://x.com/samshalwin" target="_blank" rel="noopener noreferrer" className="hover:text-cream transition-colors hidden sm:block">
+          <a
+            href="https://x.com/samshalwin"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-cream transition-colors hidden sm:block"
+          >
             X
           </a>
         </div>

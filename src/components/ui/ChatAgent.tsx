@@ -14,10 +14,10 @@ interface ChatAgentProps {
 }
 
 const suggestedQuestions = [
-  "Tell me about your projects",
-  "What technologies do you use?",
-  "How can I contact you?",
-  "What's your experience?",
+  "What do you do at Cprime?",
+  "Tell me about your hackathon wins",
+  "What's your tech stack?",
+  "How can I reach you?",
 ];
 
 export default function ChatAgent({ onClose }: ChatAgentProps) {
